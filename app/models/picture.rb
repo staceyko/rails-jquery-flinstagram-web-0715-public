@@ -15,18 +15,18 @@ class Picture < ActiveRecord::Base
   end
 
   def heart_class(user)
-    if user_liked?(user)
-      "glyphicon glyphicon-heart red-heart"
+    if ajax_fail || !user_liked?(user)
+          "glyphicon glyphicon-heart grey-heart"
     else
-      "glyphicon glyphicon-heart grey-heart"
+          "glyphicon glyphicon-heart red-heart"
     end
   end
 
   private
 
       def user_liked?(user)
-        self.likes.any? do |like| 
-          like.user_id == user.id 
+        self.likes.any? do |like|
+          like.user_id == user.id
         end
       end
 
